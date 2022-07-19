@@ -14,11 +14,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup Node and pnpm
         uses: silverhand-io/actions-node-pnpm-run-steps@v1.2.2
 
       - name: Build
-        run: pnpm -- lerna run build --stream
 
       # See warning in https://pnpm.io/cli/prune
       - name: Prune
@@ -48,6 +46,5 @@ jobs:
         run: sleep 5s
 
       - name: Health check
-        run: curl $DEV_SERVER_URL/api/status -If
         env:
           DEV_SERVER_URL: ${{ secrets.DEV_SERVER_URL }}
